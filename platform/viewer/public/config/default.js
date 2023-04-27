@@ -1,20 +1,14 @@
 window.config = {
   routerBasename: '/',
-  // whiteLabeling: {},
   extensions: [],
   modes: [],
-  customizationService: {
-    // Shows a custom route -access via http://localhost:3000/custom
-    // helloPage: '@ohif/extension-default.customizationModule.helloPage',
-  },
+  customizationService: {},
   showStudyList: true,
-  // some windows systems have issues with more than 3 web workers
   maxNumberOfWebWorkers: 3,
-  // below flag is for performance reasons, but it might not work for all servers
   omitQuotationForMultipartRequest: true,
   showWarningMessageForCrossOrigin: true,
   showCPUFallbackMessage: true,
-  showLoadingIndicator: true,
+  showLoadingIndicator: false,
   strictZSpacingForVolumeViewport: true,
   maxNumRequests: {
     interaction: 100,
@@ -23,7 +17,6 @@ window.config = {
     // above, the number of requests can be go a lot higher.
     prefetch: 25,
   },
-  // filterQueryParam: false,
   dataSources: [
     {
       friendlyName: 'dcmjs DICOMWeb Server',
@@ -31,23 +24,25 @@ window.config = {
       sourceName: 'dicomweb',
       configuration: {
         name: 'aws',
-        // old server
-        // wadoUriRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/wado',
-        // qidoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
-        // wadoRoot: 'https://server.dcmjs.org/dcm4chee-arc/aets/DCM4CHEE/rs',
-
-        // new server
-        wadoUriRoot: 'https://domvja9iplmyu.cloudfront.net/dicomweb',
-        qidoRoot: 'https://domvja9iplmyu.cloudfront.net/dicomweb',
-        wadoRoot: 'https://domvja9iplmyu.cloudfront.net/dicomweb',
-
+        wadoUriRoot:
+          'https://proxy.imaging.datacommons.cancer.gov/current/viewer-only-no-downloads-see-tinyurl-dot-com-slash-3j3d9jyp/dicomWeb',
+        qidoRoot:
+          'https://proxy.imaging.datacommons.cancer.gov/current/viewer-only-no-downloads-see-tinyurl-dot-com-slash-3j3d9jyp/dicomWeb',
+        wadoRoot:
+          'https://proxy.imaging.datacommons.cancer.gov/current/viewer-only-no-downloads-see-tinyurl-dot-com-slash-3j3d9jyp/dicomWeb',
+        wadoUriRoot:
+          'https://testing-proxy.canceridc.dev/current/viewer-only-no-downloads-see-tinyurl-dot-com-slash-3j3d9jyp/dicomWeb',
+        qidoRoot:
+          'https://testing-proxy.canceridc.dev/current/viewer-only-no-downloads-see-tinyurl-dot-com-slash-3j3d9jyp/dicomWeb',
+        wadoRoot:
+          'https://testing-proxy.canceridc.dev/current/viewer-only-no-downloads-see-tinyurl-dot-com-slash-3j3d9jyp/dicomWeb',
         qidoSupportsIncludeField: false,
         supportsReject: false,
         imageRendering: 'wadors',
         thumbnailRendering: 'wadors',
         enableStudyLazyLoad: true,
         supportsFuzzyMatching: false,
-        supportsWildcard: true,
+        supportsWildcard: false,
         staticWado: true,
         singlepart: 'bulkdata,video,pdf',
         useBulkDataURI: false,
@@ -69,31 +64,9 @@ window.config = {
     },
   ],
   httpErrorHandler: error => {
-    // This is 429 when rejected from the public idc sandbox too often.
     console.warn(error.status);
-
-    // Could use services manager here to bring up a dialog/modal if needed.
     console.warn('test, navigate to https://ohif.org/');
   },
-  // whiteLabeling: {
-  //   /* Optional: Should return a React component to be rendered in the "Logo" section of the application's Top Navigation bar */
-  //   createLogoComponentFn: function (React) {
-  //     return React.createElement(
-  //       'a',
-  //       {
-  //         target: '_self',
-  //         rel: 'noopener noreferrer',
-  //         className: 'text-purple-600 line-through',
-  //         href: '/',
-  //       },
-  //       React.createElement('img',
-  //         {
-  //           src: './customLogo.svg',
-  //           className: 'w-8 h-8',
-  //         }
-  //       ))
-  //   },
-  // },
   defaultDataSourceName: 'dicomweb',
   hotkeys: [
     {
@@ -125,23 +98,12 @@ window.config = {
     { commandName: 'resetViewport', label: 'Reset', keys: ['space'] },
     { commandName: 'nextImage', label: 'Next Image', keys: ['down'] },
     { commandName: 'previousImage', label: 'Previous Image', keys: ['up'] },
-    // {
-    //   commandName: 'previousViewportDisplaySet',
-    //   label: 'Previous Series',
-    //   keys: ['pagedown'],
-    // },
-    // {
-    //   commandName: 'nextViewportDisplaySet',
-    //   label: 'Next Series',
-    //   keys: ['pageup'],
-    // },
     {
       commandName: 'setToolActive',
       commandOptions: { toolName: 'Zoom' },
       label: 'Zoom',
       keys: ['z'],
     },
-    // ~ Window level presets
     {
       commandName: 'windowLevelPreset1',
       label: 'W/L Preset 1',
