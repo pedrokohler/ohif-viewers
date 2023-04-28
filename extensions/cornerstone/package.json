@@ -32,14 +32,14 @@
     "start": "yarn run dev"
   },
   "peerDependencies": {
-    "@ohif/core": "^3.0.0",
-    "@ohif/ui": "^2.0.0",
-    "@cornerstonejs/dicom-image-loader": "^0.4.0",
     "@cornerstonejs/codec-charls": "^1.2.3",
     "@cornerstonejs/codec-libjpeg-turbo-8bit": "^1.2.2",
     "@cornerstonejs/codec-openjpeg": "^1.2.2",
     "@cornerstonejs/codec-openjph": "^2.4.2",
-    "dcmjs": "^0.29.5",
+    "@cornerstonejs/dicom-image-loader": "^0.4.0",
+    "@ohif/core": "^3.0.0",
+    "@ohif/ui": "^2.0.0",
+    "dcmjs": "0.29.6",
     "dicom-parser": "^1.8.9",
     "hammerjs": "^2.0.8",
     "prop-types": "^15.6.2",
