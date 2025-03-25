@@ -33,7 +33,14 @@ export const mpr: Types.HangingProtocol.Protocol = {
   numberOfPriorsReferenced: 0,
   protocolMatchingRules: [],
   imageLoadStrategy: 'nth',
-  callbacks: {},
+  callbacks: {
+    onProtocolEnter: [
+      {
+        commandName: 'enableOrientationMarkers',
+        context: 'CORNERSTONE',
+      },
+    ],
+  },
   displaySetSelectors: {
     activeDisplaySet: {
       seriesMatchingRules: [

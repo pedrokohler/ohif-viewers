@@ -277,6 +277,12 @@ function initMPRToolGroup(extensionManager, toolGroupService, commandsManager) {
   };
 
   toolGroupService.createToolGroupAndAddTools('mpr', tools);
+
+  const mprToolGroup = toolGroupService.getToolGroup('mpr');
+  mprToolGroup.addTool(toolNames.OrientationMarker);
+  mprToolGroup.setToolConfiguration(toolNames.OrientationMarker, {
+    overlayMarkerType: 1,
+  });
 }
 function initVolume3DToolGroup(extensionManager, toolGroupService) {
   const utilityModule = extensionManager.getModuleEntry(

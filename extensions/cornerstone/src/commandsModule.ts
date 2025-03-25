@@ -292,6 +292,15 @@ function commandsModule({
         measurementServiceSource.remove(uid);
       }
     },
+    enableOrientationMarkers: () => {
+      const mprToolGroup = toolGroupService.getToolGroup('mpr');
+      mprToolGroup.setToolDisabled(toolNames.OrientationMarker);
+      mprToolGroup.setToolConfiguration(toolNames.OrientationMarker, {
+        overlayMarkerType: 1,
+      });
+
+      mprToolGroup.setToolEnabled(toolNames.OrientationMarker);
+    },
     /**
      * Common logic for handling measurement label updates through dialog
      * @param uid - measurement uid
@@ -1810,6 +1819,7 @@ function commandsModule({
     deleteActiveAnnotation: {
       commandFn: actions.deleteActiveAnnotation,
     },
+    enableOrientationMarkers: actions.enableOrientationMarkers,
     undo: actions.undo,
     redo: actions.redo,
     interpolateLabelmap: actions.interpolateLabelmap,
